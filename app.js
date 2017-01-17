@@ -41,14 +41,14 @@ rl.on('close', () =>{　//closeイベントはすべての行を読み終わっ�
         betu.change = betu.p15 / betu.p10;
     }
 
-    const rankingArray = Array.from(map).sort((p1,p2) => { //sort関数を使っている、正の数で返ってくればp2が前に来る
-        return p2[1].change - p1[1].change;
-    });
-    
-    const rankingStrings = rankingArray.map((p) => { //map関数を使っている、一括で変更するときに使える
-        return p[0] + ': ' + p[1].p10 + '=>' + p[1].p15 + ' 変化率:' + p[1].change;
+    const rankingArray = Array.from(map).sort((p1,p2) => { //sort関数を使っている、正の数で返ってくればp2が前に来る、負になればp1が前に来る
+        return p1[1].change - p2[1].change;
     });
 
+    const rankingStrings = rankingArray.map((p, i) => { //map関数を使っている、一括で変更するときに使える
+        return (i + 1) + ' 位： ' + p[0] + ': ' + p[1].p10 + '=>' + p[1].p15 + ' 変化率:' + p[1].change;
+    });
+    console.log('めでたくない人口が減ってる都道府県ランキング')
     console.log(rankingStrings);
     
 });
